@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import CitasView from '@/views/CitasView.vue'
 import MedicosView from '@/views/MedicosView.vue'
 import PacientesView from '@/views/PacientesView.vue'
-
+import CrearCita from '@/views/CreateCitaView.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -24,6 +24,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/pacientes',
     name: 'pacientes',
     component: PacientesView
+  },
+  {
+    path: '/crear-cita',
+    name: 'crear-cita',
+    component: CrearCita
   }
 ]
 

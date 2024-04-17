@@ -5,7 +5,6 @@ import { Cita } from "@/interfaces/Cita";
 class CitasListService {
   private citas = ref<Cita[]>([]);
 
-
   getCitas() {
     return this.citas.value;
   }
@@ -21,6 +20,13 @@ class CitasListService {
       console.log(error);
       return [];
     }
+  }
+
+  async createCita(cita: Cita) {
+    const url = "http://localhost:8080/cita";
+    await axios.post(url, cita).then(() => {
+      this.citas.value.push(cita);
+    });
   }
 
   async deleteCitas(id: number) {

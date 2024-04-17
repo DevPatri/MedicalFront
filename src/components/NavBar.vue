@@ -18,6 +18,7 @@ nav {
     width: 100%;
     background-color: #dbdbdb;
     padding: 0;
+    border-radius: 5px;
 
     .links {
         flex-grow: 1;
