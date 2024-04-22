@@ -4,11 +4,10 @@
             <h3>{{ formatDate(cita.fechaHora) }}</h3>
             <p><strong>Paciente NSS:</strong> {{ cita.pacienteNSS }}</p>
             <p><strong>Motivo cita: </strong>{{ cita.motivoCita }}</p>
-            <!-- <p><strong>M&eacute;dico: </strong>{{ cita.medicoNumColegiado }}</p>
-            <p><strong>Atributo: </strong>{{ cita.attribute11 }}</p>
-            <p><strong>Diagn&oacute;stico: </strong>{{ cita.diagnostico }}</p> -->
-            <router-link class="bt-diag" :to="{name:'cita', params: {id: cita.id }}">Detalle</router-link>
-            <a class="bt-elim" href="#" @click="eliminarCita(cita.id)">Eliminar</a>
+            <div>
+                <router-link class="bt-diag" :to="{ name: 'cita', params: { id: cita.id } }">Detalle</router-link>
+                <a class="bt-elim" href="#" @click="eliminarCita(cita.id)">Eliminar</a>
+            </div>
         </li>
     </ul>
 </template>
@@ -54,8 +53,8 @@ export default {
             }
         }
 
-        return { 
-            citas, 
+        return {
+            citas,
             formatDate,
             eliminarCita
         };
@@ -75,14 +74,19 @@ export default {
 
     li {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         justify-content: start;
         align-items: center;
         padding: 15px;
         background-color: #bce2d1;
         border-radius: 5px;
         border: 1px solid white;
-        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+        div{
+            justify-self: flex-end;
+            padding: 0 1rem;
+        }
 
         h3,
         p {
@@ -92,25 +96,25 @@ export default {
     }
 
     .bt-elim {
-        justify-self: flex-end;
         color: red;
         font-weight: bold;
         text-decoration: none;
     }
 
     .bt-diag {
-        grid-column: span 2;
-        justify-self: flex-end;
+        padding-right: 1rem;
         color: rgb(58, 58, 175);
         font-weight: bold;
         text-decoration: none;
     }
-    .bt-diag:hover{
-        text-shadow: 0 0 10px rgba(0,0,0,0.5);
+
+    .bt-diag:hover {
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
-    .bt-diag:active{
+
+    .bt-diag:active {
         color: rgb(32, 32, 97);
-        text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     }
 }
 </style>

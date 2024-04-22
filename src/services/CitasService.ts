@@ -1,12 +1,12 @@
-import {Ref, ref } from "vue";
+import { Ref, ref } from "vue";
 import axios from "axios";
 import { Cita } from "@/interfaces/Cita";
 
 class CitasListService {
-  private citas:Ref<Cita[]> = ref<Cita[]>([]);
-  private cita:Ref<Cita>;
+  private citas: Ref<Cita[]> = ref<Cita[]>([]);
+  private cita: Ref<Cita>;
 
-  constructor(){
+  constructor() {
     this.citas = ref<Cita[]>([]);
     this.cita = ref<Cita>({
       id: 0,
@@ -19,18 +19,18 @@ class CitasListService {
       },
       medicoNumColegiado: "",
       pacienteNSS: "",
-      attribute11: 0
+      attribute11: 0,
     });
   }
 
-  getCitas(): Cita[]{
+  getCitas(): Cita[] {
     return this.citas.value;
   }
 
-  getCita():Ref<Cita> {
+  getCita(): Ref<Cita> {
     return this.cita;
   }
-  
+
   async fetchCitas(): Promise<Cita[]> {
     try {
       const url = "http://localhost:8080/cita";
@@ -56,18 +56,34 @@ class CitasListService {
     }
   }
 
-  async createCita(cita: Cita):Promise<void> {
+  async createCita(cita: Cita): Promise<void> {
     const url = "http://localhost:8080/cita";
-    await axios.post(url, cita).then(() => {
-      this.citas.value.push(cita);
-    });
+    await axios
+      .post(url, cita)
+      .then(() => {
+        this.citas.value.push(cita);
+      })
+      .catch((error) => {
+        console.error('Error al insertar la cita.',error);
+      });
   }
 
   async deleteCitas(id: number): Promise<void> {
     const url = `http://localhost:8080/cita/${id}`;
-    await axios.delete(url)
-    .then(() => {
-      this.citas.value = this.citas.value.filter(cita => cita.id !== id);
+    await axios.delete(url).then(() => {
+      this.citas.value = this.citas.value.filter((cita) => cita.id !== id);
+    });
+  }
+
+  async updateCita(cita: Cita): Promise<void> {
+    const url = `http://localhost:8080/cita/${cita.id}`;
+    await axios.put(url, cita).then(() => {
+      this.citas.value = this.citas.value.map((c) => {
+        if (c.id === cita.id) {
+          return cita;
+        }
+        return c;
+      });
     });
   }
 }
