@@ -6,5 +6,5 @@
 </template>
 
 <script lang="ts" setup>
-    import ListCitas from '@/components/ListCitas.vue';
+import ListCitas from '@/components/ListCitas.vue';
 </script>

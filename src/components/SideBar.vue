@@ -16,10 +16,7 @@
 
 <style scoped>
 .sidebar {
-    /* position: fixed;
-        top: 0;
-        left: 0; */
-    height: 10vh;
+    height: 8vh;
     margin-top: 10px;
     background-color: #bce2d1;
     color: white;
@@ -29,20 +26,28 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-around;
 
 
 
     h3 {
+        position: sticky;
+        top: 20px;
         font-size: 2rem;
     }
 
     div {
+        position: sticky;
+        top: 85px;
         padding-left: 30px;
         display: flex;
         flex-direction: row;
-
+        h3{
+            margin-right: 20px;
+        }
         a {
-            width: 100px;
+            font-size: clamp(0.8rem, 1.5vw, 1rem);
+            max-width: 100px;
             color: #42b983;
             text-decoration: none;
             padding: 8px 10px;
@@ -64,7 +69,8 @@
 @media (min-width: 720px) {
     .sidebar {
         flex-direction: column;
-        height: 100vh;
+        justify-content: start;
+        height: 100%;
 
     }
 }

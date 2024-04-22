@@ -4,28 +4,23 @@
             <h3>{{ formatDate(cita.fechaHora) }}</h3>
             <p><strong>Paciente NSS:</strong> {{ cita.pacienteNSS }}</p>
             <p><strong>Motivo cita: </strong>{{ cita.motivoCita }}</p>
-            <p><strong>M&eacute;dico: </strong>{{ cita.medicoNumColegiado }}</p>
+            <!-- <p><strong>M&eacute;dico: </strong>{{ cita.medicoNumColegiado }}</p>
             <p><strong>Atributo: </strong>{{ cita.attribute11 }}</p>
-            <p><strong>Diagn&oacute;stico: </strong>{{ cita.diagnostico }}</p>
-            <!-- <a class="bt-diag" href="#"  @click="enviarDiag(cita.diagnostico)">Diagn&oacute;stico</a> -->
+            <p><strong>Diagn&oacute;stico: </strong>{{ cita.diagnostico }}</p> -->
+            <router-link class="bt-diag" :to="{name:'cita', params: {id: cita.id }}">Detalle</router-link>
             <a class="bt-elim" href="#" @click="eliminarCita(cita.id)">Eliminar</a>
-            <!-- <DiagForm :diagnostico="cita.diagnostico"/> -->
         </li>
     </ul>
 </template>
 
 <script lang="ts">
-// import DiagForm from '@/components/DiagForm.vue';
 import CitasListService from '@/services/CitasService';
 import { onBeforeMount, ref } from 'vue';
 import { Cita } from '@/interfaces/Cita';
-// import { Diagnostico } from '@/interfaces/Diagnostico';
 
 export default {
     name: 'ListCitas',
-    // components: {
-    //     DiagForm,
-    // },
+
     setup() {
         const service = new CitasListService();
         const citas = ref<Cita[]>([]);
@@ -58,9 +53,6 @@ export default {
                 console.error("fallo al borrar la cita", error);
             }
         }
-        // const enviarDiag = (diag:Diagnostico) => {
-        //     emit('diagnostico', diag);
-        // }
 
         return { 
             citas, 
@@ -83,14 +75,13 @@ export default {
 
     li {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         justify-content: start;
         align-items: center;
         padding: 15px;
         background-color: #bce2d1;
         border-radius: 5px;
         border: 1px solid white;
-        filter: blur(0.5px);
         box-shadow: 0 0 10px rgba(0,0,0,0.2);
 
         h3,
@@ -102,16 +93,24 @@ export default {
 
     .bt-elim {
         justify-self: flex-end;
-        grid-column: span 2;
         color: red;
         font-weight: bold;
         text-decoration: none;
     }
 
     .bt-diag {
-        color: rgb(62, 62, 199);
+        grid-column: span 2;
+        justify-self: flex-end;
+        color: rgb(58, 58, 175);
         font-weight: bold;
         text-decoration: none;
+    }
+    .bt-diag:hover{
+        text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    .bt-diag:active{
+        color: rgb(32, 32, 97);
+        text-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
 }
 </style>

@@ -4,6 +4,7 @@ import CitasView from '@/views/CitasView.vue'
 import MedicosView from '@/views/MedicosView.vue'
 import PacientesView from '@/views/PacientesView.vue'
 import CrearCita from '@/views/CreateCitaView.vue'
+import CitaDetailView from '@/views/citasviews/CitaDetailView.vue'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -14,6 +15,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/citas',
     name: 'citas',
     component: CitasView
+  },
+  {
+    path: '/citas/:id',
+    name: 'cita',
+    component: CitaDetailView
   },
   {
     path: '/medicos',

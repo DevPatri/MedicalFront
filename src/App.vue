@@ -24,7 +24,7 @@ import SideBar from '@/components/SideBar.vue';
 @media (min-width:720px) {
   main {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 200px 1fr;
   }
 }
 
