@@ -3,30 +3,28 @@
         <h1>Cita</h1>
         <ul>
             <li>
-                <h3>{{ cita.fechaHora }}</h3>
+                <h3>{{ formatDate(cita.fechaHora) }}</h3>
                 <p><strong>Paciente NSS:</strong> {{ cita.pacienteNSS }}</p>
                 <p><strong>Motivo cita: </strong>{{ cita.motivoCita }}</p>
                 <p><strong>M&eacute;dico: </strong>{{ cita.medicoNumColegiado }}</p>
                 <p><strong>Atributo: </strong>{{ cita.attribute11 }}</p>
+                <hr>
                 <p><strong>Diagn&oacute;stico: </strong></p>
                 <div class="diagn">
                     <div>
                         <p>Enfermedad: </p>
-                        <textarea v-if="cita.diagnostico && cita.diagnostico.enfermedad"
-                            v-model="cita.diagnostico.enfermedad">
+                        <textarea v-model="cita.diagnostico.enfermedad">
                         </textarea>
-                        <textarea v-else>&nbsp;</textarea>
                     </div>
                     <div>
                         <p>Valoraci&oacute;n: </p>
-                        <textarea v-if="cita.diagnostico && cita.diagnostico.valoracionEspecialista"
-                            v-model="cita.diagnostico.valoracionEspecialista">
+                        <textarea v-model="cita.diagnostico.valoracionEspecialista">
                         </textarea>
-                        <textarea v-else>&nbsp;</textarea>
                     </div>
                 </div>
             </li>
         </ul>
+        <a class="bt-primary" @click="updateCita">Actualizar</a>
         <router-link class="bt-volver" :to="{ name: 'citas' }">Volver</router-link>
     </div>
 </template>
@@ -37,17 +35,46 @@ import { Ref, onMounted, ref } from 'vue';
 import { Cita } from '@/interfaces/Cita';
 import CitasListService from '@/services/CitasService';
 import { useRoute } from 'vue-router';
+import router from '@/router';
 
 const service = new CitasListService();
-const cita: Ref<Cita> = ref('' as unknown as Cita);
+const cita: Ref<Cita> = ref({
+      id: 0,
+      fechaHora: new Date(),
+      motivoCita: "",
+      diagnostico: {
+        id: 0,
+        enfermedad: "",
+        valoracionEspecialista: "",
+      },
+      medicoNumColegiado: "",
+      pacienteNSS: "",
+      attribute11: 0,
+    } as Cita);
 
 onMounted(async () => {
     const route = useRoute();
     if (route.params && route.params.id) {
         let id = Number(route.params.id);
-        cita.value = await service.fetchCita(id)
+        const fetchedCita = await service.fetchCita(id)
+        cita.value = { ...fetchedCita, diagnostico: fetchedCita.diagnostico || cita.value.diagnostico };
     }
 })
+
+const updateCita = async () => {
+    await service.updateCita(cita.value);
+
+    router.push({ name: 'citas' });
+}
+function formatDate(date: Date | string): string {
+            return new Intl.DateTimeFormat('es-ES', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric'
+            }).format(new Date(date));
+        }
 </script>
 
 <style scoped>
@@ -65,16 +92,20 @@ ul {
     height: fit-content;
     list-style-type: none;
 }
+li hr{
+    width: 1200px;
+}
 
 a {
     text-decoration: none;
 }
 
 .diagn {
+    max-width: 1200px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    margin-top: 1rem;
+    margin: 1rem auto 0 auto;
 
     div {
         display: flex;
@@ -83,20 +114,40 @@ a {
 
         textarea {
             width: 100%;
-            min-height: 10vh;
+            min-height: 15vh;
             padding: 5px;
         }
     }
 }
 
-.bt-volver {
+.bt-primary {
+    cursor: pointer;
+    background-color: rgb(40, 154, 68);
+    padding: 4px 12px;
+    border-radius: 5px;
+    margin-right: 30px;
     font-size: 1.2rem;
     font-weight: bold;
-    color: rgb(58, 58, 175);
+    color: rgb(255, 255, 255);
+}
+.bt-primary:hover {
+    color: rgb(176, 196, 182);
+}
+.bt-primary:active {
+    color: rgb(63, 122, 77);
+}
+
+.bt-volver {
+    background-color: rgb(58, 58, 175);
+    padding: 4px 12px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
 }
 
 .bt-volver:hover {
-    color: rgb(32, 32, 97);
+    color: rgb(187, 187, 248);
 }
 
 .bt-volver:active {
