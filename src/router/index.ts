@@ -1,10 +1,14 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import CitasView from '@/views/CitasView.vue'
 import MedicosView from '@/views/MedicosView.vue'
-import PacientesView from '@/views/PacientesView.vue'
-import CrearCita from '@/views/CreateCitaView.vue'
+
+import CrearPaciente from '@/views/pacientesview/CreatePacienteView.vue'
+import PacientesView from '@/views/pacientesview/PacientesView.vue'
+
+import CitasView from '@/views/citasviews/CitasView.vue'
+import CrearCita from '@/views/citasviews/CreateCitaView.vue'
 import CitaDetailView from '@/views/citasviews/CitaDetailView.vue'
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -22,6 +26,11 @@ const routes: Array<RouteRecordRaw> = [
     component: CitaDetailView
   },
   {
+    path: '/crear-cita',
+    name: 'crear-cita',
+    component: CrearCita
+  },
+  {
     path: '/medicos',
     name: 'medicos',
     component: MedicosView
@@ -32,10 +41,11 @@ const routes: Array<RouteRecordRaw> = [
     component: PacientesView
   },
   {
-    path: '/crear-cita',
-    name: 'crear-cita',
-    component: CrearCita
+    path: '/crear-paciente',
+    name: 'crear-paciente',
+    component: CrearPaciente
   }
+
 ]
 
 const router = createRouter({

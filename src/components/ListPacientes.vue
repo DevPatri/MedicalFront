@@ -6,8 +6,8 @@
             <p><strong>Dirección: </strong>{{ paciente.direccion }}</p>
             <p><strong>Tlf: </strong>{{ paciente.telefono }}</p>
             <div class="btns">
-                <a href="" class="bt-act">Actualizar</a>
-                <a href="" class="bt-elim" @click="eliminarPaciente(paciente.nss)">Eliminar</a>
+                <a class="bt-act">Actualizar</a>
+                <a class="bt-elim" @click="eliminarPaciente(paciente.nss)">Eliminar</a>
             </div>
         </li>
     </ul>
@@ -51,18 +51,18 @@ export default {
     list-style: none;
     padding: 0;
     margin: 0 auto;
-    width: 70vw;
+    max-width: 55em;
 
     li {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         justify-content: start;
         align-items: center;
+        margin: 0 40px;
         padding: 15px;
         background-color: #bce2d1;
         border-radius: 5px;
         border: 1px solid white;
-        filter: blur(0.5px);
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
         h3,
@@ -90,12 +90,14 @@ export default {
     }
 
     .bt-elim {
+        cursor: pointer;
         color: red;
         font-weight: bold;
         text-decoration: none;
     }
 
     .bt-act {
+        cursor: pointer;
         margin-right: 10px;
         color: rgb(62, 62, 199);
         font-weight: bold;

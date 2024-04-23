@@ -27,6 +27,16 @@ class PacientesListService {
     return response.data;
   }
 
+  async createPaciente(paciente: Paciente) {
+    const url = "http://localhost:8080/paciente";
+    try{
+      await axios.post(url, paciente)
+      .then(() => { this.pacientes.value.push(paciente) })
+    }catch(error){
+      console.error('No se ha podido crear al paciente', error);
+    }
+  }
+
   async deletePacientes(nss: string) {
     const url = `http://localhost:8080/paciente/${nss}`;
     await axios.delete(url).then(() => {

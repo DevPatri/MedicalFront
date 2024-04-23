@@ -64,7 +64,7 @@ class CitasListService {
         this.citas.value.push(cita);
       })
       .catch((error) => {
-        console.error('Error al insertar la cita.',error);
+        console.error('Error al insertar la cita.', error);
       });
   }
 
