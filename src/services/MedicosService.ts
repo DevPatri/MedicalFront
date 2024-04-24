@@ -21,6 +21,24 @@ class MedicosService {
     }
   }
 
+  async fetchMedico(numColegiado: string) {
+    try {
+      const url = `http://localhost:8080/medico/${numColegiado}`;
+      const response = await axios.get<Medico>(url);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return null;
+    }
+  }
+
+  async createMedico(medico: Medico) {
+    const url = "http://localhost:8080/medico";
+    await axios.post(url, medico).then(() => {
+      this.medicos.value.push(medico);
+    });
+  }
+
   async deleteMedicos(numColegiado: string) {
     const url = `http://localhost:8080/medico/${numColegiado}`;
     await axios.delete(url).then(() => {

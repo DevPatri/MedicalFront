@@ -22,9 +22,26 @@ class PacientesListService {
   }
 
   async getPaciente(nss: string) {
-    const url = `http://localhost:8080/paciente/${nss}`;
-    const response = await axios.get<Paciente>(url);
-    return response.data;
+    try{
+      const url = `http://localhost:8080/paciente/${nss}`;
+      const response = await axios.get(url);
+      console.log(nss)
+      console.log(response);
+      return response.data;
+    }catch(error){
+      console.error('No se ha podido obtener al paciente', error);
+      return null;
+    }
+  }
+
+  async createPaciente(paciente: Paciente) {
+    const url = "http://localhost:8080/paciente";
+    try{
+      await axios.post(url, paciente)
+      .then(() => { this.pacientes.value.push(paciente) })
+    }catch(error){
+      console.error('No se ha podido crear al paciente', error);
+    }
   }
 
   async deletePacientes(nss: string) {

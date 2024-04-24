@@ -3,9 +3,8 @@
         <h3>Opciones</h3>
         <div>
             <RouterLink to="/crear-cita">Crear cita</RouterLink>
-            <!-- <a href="#">Crear cita</a> -->
-            <a href="#">Crear paciente</a>
-            <a href="#">Crear medico</a>
+            <RouterLink to="/crear-paciente">Crear paciente</RouterLink>
+            <RouterLink to="/crear-medico">Crear m&eacute;dico</RouterLink>
         </div>
     </div>
 </template>
@@ -46,6 +45,7 @@
             margin-right: 20px;
         }
         a {
+            cursor: pointer;
             font-size: clamp(0.8rem, 1.5vw, 1rem);
             max-width: 100px;
             color: #42b983;

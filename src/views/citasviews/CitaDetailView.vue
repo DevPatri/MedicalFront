@@ -63,7 +63,6 @@ onMounted(async () => {
 
 const updateCita = async () => {
     await service.updateCita(cita.value);
-
     router.push({ name: 'citas' });
 }
 function formatDate(date: Date | string): string {

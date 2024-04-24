@@ -13,18 +13,18 @@
 </template>
 
 <script lang="ts">
-import CitasListService from '@/services/CitasService';
-import { onBeforeMount, ref } from 'vue';
-import { Cita } from '@/interfaces/Cita';
+import CitasListService from '@/services/CitasService'
+import { onBeforeMount, ref } from 'vue'
+import { Cita } from '@/interfaces/Cita'
 
 export default {
     name: 'ListCitas',
 
     setup() {
-        const service = new CitasListService();
+        const service = new CitasListService()
         const citas = ref<Cita[]>([]);
-
-
+        
+        //llamamos al servicio para obtener las citas antes de que se monte el componente
         onBeforeMount(async () => {
             //llamamos al servicio para obtener las citas antes de que se monte el componente
             const fetchedCitas = await service.fetchCitas();
@@ -39,17 +39,17 @@ export default {
                 year: 'numeric',
                 hour: 'numeric',
                 minute: 'numeric'
-            }).format(new Date(date));
+            }).format(new Date(date))
         }
         // función que llama al servicio para eliminar una cita
         const eliminarCita = async (id: number) => {
             try {
                 await service.deleteCitas(id);
-                const fetchedCitas = await service.fetchCitas();
-                citas.value = fetchedCitas.sort((a, b) => a.fechaHora > b.fechaHora ? 1 : -1);
+                const fetchedCitas = await service.fetchCitas()
+                citas.value = fetchedCitas
 
             } catch (error) {
-                console.error("fallo al borrar la cita", error);
+                console.error("fallo al borrar la cita", error)
             }
         }
 
