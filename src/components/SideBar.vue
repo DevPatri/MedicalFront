@@ -4,7 +4,7 @@
         <div>
             <RouterLink to="/crear-cita">Crear cita</RouterLink>
             <RouterLink to="/crear-paciente">Crear paciente</RouterLink>
-            <a href="#">Crear medico</a>
+            <RouterLink to="/crear-medico">Crear m&eacute;dico</RouterLink>
         </div>
     </div>
 </template>

@@ -3,30 +3,28 @@
         <li v-for="paciente in pacientes" v-bind:key="paciente.nss">
             <h3>{{ paciente.nombre + ' ' + paciente.apellidos }}</h3>
             <p><strong>NSS: </strong>{{ paciente.nss }}</p>
-            <p><strong>Dirección: </strong>{{ paciente.direccion }}</p>
-            <p><strong>Tlf: </strong>{{ paciente.telefono }}</p>
             <div class="btns">
-                <a class="bt-act">Actualizar</a>
+                <router-link class="bt-diag" :to="{ name:'paciente', params: { nss:paciente.nss } }">Detalle</router-link>
                 <a class="bt-elim" @click="eliminarPaciente(paciente.nss)">Eliminar</a>
             </div>
         </li>
     </ul>
 </template>
 <script lang="ts">
-import PacientesListService from '@/services/PacientesService';
-import { onBeforeMount, ref } from 'vue';
-import { Paciente } from '@/interfaces/Paciente';
+import PacientesListService from '@/services/PacientesService'
+import { onBeforeMount, ref } from 'vue'
+import { Paciente } from '@/interfaces/Paciente'
 
 export default {
     name: 'ListPacientes',
     setup() {
-        const service = new PacientesListService();
-        const pacientes = ref<Paciente[]>([]);
+        const service = new PacientesListService()
+        const pacientes = ref<Paciente[]>([])
 
         //llamamos al servicio para obtener los pacientes antes de que se monte el componente
         onBeforeMount(async () => {
-            const fetchedPacientes = await service.fetchPacientes();
-            pacientes.value = fetchedPacientes;
+            const fetchedPacientes = await service.fetchPacientes()
+            pacientes.value = fetchedPacientes.sort((a, b) => a.nombre.localeCompare(b.nombre))
         });
         // función que llama al servicio para eliminar un paciente
         const eliminarPaciente = async (nss: string) => {
@@ -38,8 +36,7 @@ export default {
                 console.error("fallo al borrar el paciente", error);
             }
         }
-
-        return { pacientes, eliminarPaciente };
+        return { pacientes, eliminarPaciente }
     },
 };
 </script>
@@ -96,7 +93,7 @@ export default {
         text-decoration: none;
     }
 
-    .bt-act {
+    .bt-diag {
         cursor: pointer;
         margin-right: 10px;
         color: rgb(62, 62, 199);

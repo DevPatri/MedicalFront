@@ -30,6 +30,7 @@ import { Paciente } from '@/interfaces/Paciente';
 import { Medico } from '@/interfaces/Medico';
 import CitasListService from '@/services/CitasService';
 import { Cita } from '@/interfaces/Cita';
+import router from '@/router';
 
 export default defineComponent({
     name: 'CrearCita',
@@ -69,8 +70,8 @@ export default defineComponent({
                         valoracionEspecialista: ''
                     }
                 }
-                console.log(cita)
                 await citaService.createCita(cita)
+                router.push({ name: 'citas' })
             }catch (error) {
                 console.error("fallo al crear la cita", error)
             }
@@ -92,7 +93,7 @@ export default defineComponent({
 
 <style scoped>
 div {
-    margin-top: 100px;
+    margin-top: 80px;
 }
 
 form {
@@ -101,6 +102,14 @@ form {
     row-gap: 10px;
     width: 300px;
     margin: 0 auto;
+
+    select{
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        background-color: rgb(182, 182, 182);
+        padding: 5px
+    }
 
     label {
         padding-right: 15px;

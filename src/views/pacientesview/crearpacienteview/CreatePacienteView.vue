@@ -94,7 +94,6 @@ div {
 
         input {
             outline: none;
-            box-shadow: none;
             border: none;
             border-radius: 5px;
             padding: 2px;

@@ -1,0 +1,39 @@
+h1 {
+    height: fit-content;
+}
+
+.list {
+    width: 100%;
+    padding: 0;
+}
+
+ul {
+    padding: 0;
+    height: fit-content;
+    list-style-type: none;
+}
+li hr{
+    max-width: 1200px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.bt-volver {
+    background-color: rgb(58, 58, 175);
+    padding: 4px 12px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+}
+
+.bt-volver:hover {
+    color: rgb(187, 187, 248);
+}
+
+.bt-volver:active {
+    color: rgb(32, 32, 97);
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
