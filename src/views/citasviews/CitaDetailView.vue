@@ -13,12 +13,12 @@
                 <div class="diagn">
                     <div>
                         <p>Enfermedad: </p>
-                        <textarea v-model="cita.diagnostico.enfermedad">
+                        <textarea class="textdiagn" v-model="cita.diagnostico.enfermedad">
                         </textarea>
                     </div>
                     <div>
                         <p>Valoraci&oacute;n: </p>
-                        <textarea v-model="cita.diagnostico.valoracionEspecialista">
+                        <textarea class="textdiagn" v-model="cita.diagnostico.valoracionEspecialista">
                         </textarea>
                     </div>
                 </div>
@@ -47,7 +47,7 @@ const cita: Ref<Cita> = ref({
         enfermedad: "",
         valoracionEspecialista: "",
       },
-      medicoNumColegiado: "",
+      medicoNumColegiado: "", 
       pacienteNSS: "",
       attribute11: 0,
     } as Cita);
@@ -55,7 +55,7 @@ const cita: Ref<Cita> = ref({
 onMounted(async () => {
     const route = useRoute();
     if (route.params && route.params.id) {
-        let id = Number(route.params.id);
+        const id = Number(route.params.id);
         const fetchedCita = await service.fetchCita(id)
         cita.value = { ...fetchedCita, diagnostico: fetchedCita.diagnostico || cita.value.diagnostico };
     }
@@ -111,7 +111,7 @@ a {
         flex-direction: column;
         padding: 0 20px;
 
-        textarea {
+        .textdiagn {
             width: 100%;
             min-height: 15vh;
             padding: 5px;
