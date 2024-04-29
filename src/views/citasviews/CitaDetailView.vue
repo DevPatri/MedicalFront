@@ -92,7 +92,7 @@ ul {
     list-style-type: none;
 }
 li hr{
-    width: 1200px;
+    width: 100%;
 }
 
 a {
@@ -100,13 +100,13 @@ a {
 }
 
 .diagn {
-    max-width: 1200px;
+    max-width: 100%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    margin: 1rem auto 0 auto;
+    margin: 0 auto;
 
-    div {
+    >div {
         display: flex;
         flex-direction: column;
         padding: 0 20px;

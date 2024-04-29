@@ -1,6 +1,6 @@
 <template>
     <nav>
-        <router-link to="/"><img src="@/assets/img/logo2.webp" alt="logo"></router-link>
+        <router-link to="/"><img src="../assets/img/logo2.webp" alt="logo"></router-link>
         <div class="links">
             <router-link to="/">Home</router-link>|
             <router-link to="/citas">Citas</router-link>
