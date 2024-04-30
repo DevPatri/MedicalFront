@@ -22,7 +22,7 @@
                 <label for="clave">Clave:</label>
                 <input type="password" v-model="medico.clave" id="clave" required>
             </div>
-            <a @click="crearMedico">Crear m&eacute;dico</a>
+            <a @click="crearMedico">Crear</a>
 </form>
     </div>
 </template>
@@ -46,10 +46,14 @@ export default defineComponent({
             clave: ''
         })
         
-        const crearMedico = async () => {
+        async function crearMedico () {
             try {
+                if(!medico.value.numColegiado) {
+                    alert('El número de colegiado es obligatorio')
+                    throw new Error("El número de colegiado es obligatorio")
+                }
                 await medicoService.createMedico(medico.value)
-                router.push('/medicos')
+                router.push({ name: 'medicos' })
             } catch (error) {
                 console.error("fallo al crear el medico", error)
             }

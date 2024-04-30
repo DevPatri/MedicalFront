@@ -34,7 +34,10 @@ export default defineComponent({
         onMounted(async () => {
             const route = useRoute()
             if (route.params && route.params.numColegiado) {
-                let numColegiado: string = route.params.numColegiado[0]
+                if(Array.isArray(route.params.numColegiado)){
+                    route.params.numColegiado = route.params.numColegiado[0]
+                }
+                let numColegiado: string = route.params.numColegiado
                 const fetchedMedico = await service.fetchMedico(numColegiado)
                 if (fetchedMedico) {
                     medico.value = fetchedMedico

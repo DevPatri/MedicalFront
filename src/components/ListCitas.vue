@@ -47,7 +47,6 @@ export default {
                 await service.deleteCitas(id);
                 const fetchedCitas = await service.fetchCitas()
                 citas.value = fetchedCitas
-
             } catch (error) {
                 console.error("fallo al borrar la cita", error)
             }

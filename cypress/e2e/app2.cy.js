@@ -12,9 +12,9 @@ describe('App', () => {
         cy.contains('Crear cita').click()
         cy.get('#paciente').select('Patricio 23412-35213')
         cy.get('#medico').select('Antonio 24656')
-        cy.get('#fecha').type('2024-04-30 15:00:00')
+        cy.get('input[type="datetime-local"]').type('2024-04-30T15:00:00')
         cy.get('#motivo').type('Dolor de cabeza')
-        cy.contains('Crear cita').click()
+        cy.get('form > a').contains('Crear').click()
 
         cy.get('h3').should('contain', '30 de abril de 2024, 15:00')
         cy.get('p').should('contain', 'Paciente NSS: 23412-35213')

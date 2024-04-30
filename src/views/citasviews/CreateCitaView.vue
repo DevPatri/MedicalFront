@@ -17,7 +17,7 @@
             <input v-model="fecha" type="datetime-local" id="fecha" name="fecha" required>
             <label for="motivo">Motivo cita:</label>
             <textarea v-model="motivo" type="text" id="motivo" name="motivo" required></textarea>
-            <button type="submit" @click="crearCita">Crear cita</button>
+            <a @click="crearCita">Crear</a>
         </form>
     </div>
 </template>
@@ -56,23 +56,24 @@ export default defineComponent({
 
         const crearCita = async () => {
             try {
-                const cita: Cita =
-                {
-                    pacienteNSS: paciente.value,
-                    medicoNumColegiado: medico.value,
-                    fechaHora: new Date(fecha.value),
-                    motivoCita: motivo.value,
-                    id: 0,
-                    attribute11: 0,
-                    diagnostico: {
+                const cita: Ref<Cita> = ref(
+                    {
+                        pacienteNSS: paciente.value,
+                        medicoNumColegiado: medico.value,
+                        fechaHora: new Date(fecha.value),
+                        motivoCita: motivo.value,
                         id: 0,
-                        enfermedad: '',
-                        valoracionEspecialista: ''
-                    }
-                }
-                await citaService.createCita(cita)
+                        attribute11: 0,
+                        diagnostico: {
+                            id: 0,
+                            enfermedad: '',
+                            valoracionEspecialista: ''
+                        }
+                    })
+                await citaService.createCita(cita.value)
                 router.push({ name: 'citas' })
-            }catch (error) {
+
+            } catch (error) {
                 console.error("fallo al crear la cita", error)
             }
         }
@@ -103,7 +104,7 @@ form {
     width: 300px;
     margin: 0 auto;
 
-    select{
+    select {
         outline: none;
         border: none;
         border-radius: 5px;
@@ -116,7 +117,20 @@ form {
         justify-self: end;
     }
 
-    button {
+    a {
+        text-align: center;
+        justify-self: center;
+        border: none;
+        margin-top: 20px;
+        width: 200px;
+        cursor: pointer;
+        background-color: rgb(100, 167, 116);
+        padding: 4px 12px;
+        border-radius: 5px;
+        margin-right: 30px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: rgb(255, 255, 255);
         grid-column: span 2;
     }
 

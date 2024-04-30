@@ -7,8 +7,8 @@
             </div>
             <p><strong>Número de colegiado: </strong>{{ medico.numColegiado }}</p>
             <div class="btns">
-                <router-link class="bt-diag" :to="{ name:'medico', params: { numColegiado: medico.numColegiado }}">Detalle</router-link>
-                <a @click="eliminarMedico(medico.numColegiado)" class="bt-elim">Eliminar</a>
+                <router-link v-if="medico && medico.numColegiado" class="bt-diag" :to="{ name:'medico', params: { numColegiado: medico.numColegiado } }">Detalle</router-link>
+                <a class="bt-elim" href="#" @click="eliminarMedico(medico.numColegiado)" >Eliminar</a>
             </div>
 
         </li>
@@ -29,9 +29,9 @@ export default {
             medicos.value = fetchedMedicos;
         });
 
-        const eliminarMedico = async (id: string) => {
+        const eliminarMedico = async (numColegiado: string) => {
             try {
-                await service.deleteMedicos(id);
+                await service.deleteMedicos(numColegiado);
                 const fetchedMedicos = await service.fetchMedicos();
                 medicos.value = fetchedMedicos;
             } catch (error) {

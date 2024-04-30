@@ -33,7 +33,7 @@
             <div> <label for="numTarjeta">Número de tarjeta:</label>
                 <input type="text" v-model="paciente.numTarjeta" id="numTarjeta" required>
             </div>
-            <a @click="crearPaciente">Crear paciente</a>
+            <a @click="crearPaciente">Crear</a>
         </form>
     </div>
 
