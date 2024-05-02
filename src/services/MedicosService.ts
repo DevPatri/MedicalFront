@@ -1,6 +1,7 @@
 import { Medico } from "@/interfaces/Medico";
 import axios from "axios";
 import { ref } from "vue";
+import { useAuthStore } from "@/Auth/AuthStore";
 
 class MedicosService {
   private medicos = ref<Medico[]>([]);
@@ -12,7 +13,11 @@ class MedicosService {
   async fetchMedicos() {
     try {
       const url = "http://localhost:8080/medico";
-      const response = await axios.get<Medico[]>(url);
+      const response = await axios.get<Medico[]>(url, {
+        headers: {
+          "Authorization": `Bearer ${useAuthStore().token}`
+        }
+      });
       this.medicos.value = response.data;
       return this.medicos.value;
     } catch (error) {
@@ -24,7 +29,11 @@ class MedicosService {
   async fetchMedico(numColegiado: string) {
     try {
       const url = `http://localhost:8080/medico/${numColegiado}`;
-      const response = await axios.get<Medico>(url);
+      const response = await axios.get<Medico>(url, {
+        headers: {
+          "Authorization": `Bearer ${useAuthStore().token}`
+        }
+      });
       return response.data;
     } catch (error) {
       console.log(error);

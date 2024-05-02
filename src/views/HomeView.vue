@@ -2,9 +2,6 @@
     <div>
         <img src="@/assets/img/logo2.webp" alt="logo">
         <h1>Health dates</h1>
-
-        <router-link to="login">Login</router-link>
-
     </div>
 </template>
 

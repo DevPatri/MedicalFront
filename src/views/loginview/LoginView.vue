@@ -12,6 +12,7 @@
 <script lang="ts">
 import { Ref, defineComponent, ref } from 'vue';
 import AuthService from '@/Auth/AuthService';
+import router from '@/router';
 export default defineComponent({
     name: 'LoginView',
     setup() {
@@ -23,6 +24,7 @@ export default defineComponent({
             const response = await auth.login(name.value, password.value);
             if(response){
                 alert('Login successful');
+                router.push('citas');
             }else{
                 alert('Login failed');
             }

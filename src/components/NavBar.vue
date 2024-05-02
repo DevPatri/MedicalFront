@@ -7,8 +7,28 @@
             <router-link to="/pacientes">Pacientes</router-link>
             <router-link to="/medicos">Medicos</router-link>
         </div>
+        <div>
+            <router-link to="login">Login</router-link>
+            <button v-show="token" @click="logout">Logout</button>
+        </div>
     </nav>
 </template>
+<script lang="ts" setup>
+
+import { useAuthStore } from '@/Auth/AuthStore';
+import router from '@/router'; 
+import { computed } from 'vue';
+
+const authStore = useAuthStore();
+
+const logout = () => {
+    authStore.setToken('');
+    router.push('login');
+}
+
+const token = computed(() => authStore.token)
+
+</script>
 <style scoped>
 nav {
     display: flex;
@@ -42,4 +62,15 @@ img {
     width: 75px;
     height: 75px;
 }
+button{
+            text-decoration: none;
+            margin-right: 40px;
+            width: 60px;
+            height: 30px;
+            background-color: rgb(40, 154, 68);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
 </style>

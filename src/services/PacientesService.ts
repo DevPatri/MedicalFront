@@ -1,6 +1,7 @@
 import { ref } from "vue";
 import axios from "axios";
 import { Paciente } from "@/interfaces/Paciente";
+import { useAuthStore } from "@/Auth/AuthStore";
 
 class PacientesListService {
   private pacientes = ref<Paciente[]>([]);
@@ -12,7 +13,11 @@ class PacientesListService {
   async fetchPacientes() {
     try {
       const url = "http://localhost:8080/paciente";
-      const response = await axios.get<Paciente[]>(url);
+      const response = await axios.get<Paciente[]>(url, {
+        headers: {
+          "Authorization": `Bearer ${useAuthStore().token}`
+        }
+      });
       this.pacientes.value = response.data;
       return this.pacientes.value;
     } catch (error) {
@@ -24,7 +29,11 @@ class PacientesListService {
   async getPaciente(nss: string) {
     try {
       const url = `http://localhost:8080/paciente/${nss}`;
-      const response = await axios.get(url);
+      const response = await axios.get(url, {
+        headers: {
+          "Authorization": `Bearer ${useAuthStore().token}`
+        }
+      });
       return response.data;
     } catch (error) {
       console.error("No se ha podido obtener al paciente", error);

@@ -1,6 +1,7 @@
 import { Diagnostico } from "@/interfaces/Diagnostico";
 import axios from "axios";
 import { ref } from "vue";
+import { useAuthStore } from "@/Auth/AuthStore";
 
 class DiagnosticoService {
     private diagnosticos = ref<Diagnostico[]>([]);
@@ -12,7 +13,11 @@ class DiagnosticoService {
     async fetchDiagnosticos() {
         try {
             const url = "http://localhost:8080/diagnostico";
-            const response = await axios.get<Diagnostico[]>(url);
+            const response = await axios.get<Diagnostico[]>(url,{
+                headers: {
+                  "Authorization": `Bearer ${useAuthStore().token}`
+                }
+              });
             this.diagnosticos.value = response.data;
             return this.diagnosticos.value;
         } catch (error) {
@@ -26,7 +31,11 @@ class DiagnosticoService {
         await axios.post(url, {
             enfermedad: enfermedad,
             valoracionEspecialista: valoracionEspecialista,
-        });
+            headers: {
+                "Authorization": `Bearer ${useAuthStore().token}`
+              }
+        },
+    );
     }
 
     async deleteDiagnosticos(id: number) {

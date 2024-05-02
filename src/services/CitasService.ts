@@ -1,6 +1,7 @@
 import { Ref, ref } from "vue";
 import axios from "axios";
 import { Cita } from "@/interfaces/Cita";
+import { useAuthStore } from "@/Auth/AuthStore";
 
 class CitasListService {
   private citas: Ref<Cita[]> = ref<Cita[]>([]);
@@ -34,7 +35,11 @@ class CitasListService {
   async fetchCitas(): Promise<Cita[]> {
     try {
       const url = "http://localhost:8080/cita";
-      const response = await axios.get(url);
+      const response = await axios.get(url, {
+        headers: {
+          "Authorization": `Bearer ${useAuthStore().token}`
+        }
+      });
       this.citas.value = response.data;
       return this.citas.value;
     } catch (error) {
@@ -46,12 +51,15 @@ class CitasListService {
   async fetchCita(id: number): Promise<Cita> {
     try {
       const url = `http://localhost:8080/cita/${id}`;
-      const response = await axios.get(url);
+      const response = await axios.get(url, { 
+        headers: {
+          "Authorization": `Bearer ${useAuthStore().token}`
+        },
+        });
       this.cita.value = await response.data;
       return this.cita.value;
     } catch (error) {
       console.log(error);
-      // throw error;
       return {} as Cita;
     }
   }

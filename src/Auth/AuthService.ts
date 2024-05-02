@@ -1,5 +1,6 @@
 import axios from "axios";
 import {Ref, ref } from "vue";
+import { useAuthStore } from "./AuthStore";
 
 class AuthService {
 
@@ -20,7 +21,10 @@ class AuthService {
     }
 
     async login(usuario:string, clave:string): Promise<boolean> {
+
         try {
+            const authStore = useAuthStore()            
+
             const response = await axios.post('http://localhost:8080/auth/login', {
                 usuario: usuario,
                 clave: clave
@@ -30,10 +34,10 @@ class AuthService {
                     'Content-Type': 'application/json'
                 }
             })
-            console.log(response.data)
             if(response.data.token){
                 this.token.value = response.data.token
-                return true 
+                authStore.setToken(response.data.token)
+                return true
             }else{
                 this.error.value = "Login failed"
                 return false
