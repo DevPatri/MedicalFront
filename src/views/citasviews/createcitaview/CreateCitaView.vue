@@ -26,9 +26,9 @@
 import { Ref, defineComponent, onBeforeMount, ref } from 'vue';
 import PacientesListService from '@/services/PacientesService';
 import MedicosListService from '@/services/MedicosService';
+import CitasListService from '@/services/CitasService';
 import { Paciente } from '@/interfaces/Paciente';
 import { Medico } from '@/interfaces/Medico';
-import CitasListService from '@/services/CitasService';
 import { Cita } from '@/interfaces/Cita';
 import router from '@/router';
 
@@ -92,54 +92,4 @@ export default defineComponent({
 
 </script>
 
-<style scoped>
-div {
-    margin-top: 80px;
-}
-
-form {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    row-gap: 10px;
-    width: 300px;
-    margin: 0 auto;
-
-    select {
-        outline: none;
-        border: none;
-        border-radius: 5px;
-        background-color: rgb(182, 182, 182);
-        padding: 5px
-    }
-
-    label {
-        padding-right: 15px;
-        justify-self: end;
-    }
-
-    a {
-        text-align: center;
-        justify-self: center;
-        border: none;
-        margin-top: 20px;
-        width: 200px;
-        cursor: pointer;
-        background-color: rgb(100, 167, 116);
-        padding: 4px 12px;
-        border-radius: 5px;
-        margin-right: 30px;
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: rgb(255, 255, 255);
-        grid-column: span 2;
-    }
-
-    textarea {
-        resize: none;
-        min-height: 50px;
-        max-height: 200px;
-        width: 150px;
-        box-sizing: content;
-    }
-}
-</style>
+<style src="./CreateCitaView.css" scoped />

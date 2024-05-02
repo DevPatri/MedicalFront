@@ -3,6 +3,8 @@
         <img src="@/assets/img/logo2.webp" alt="logo">
         <h1>Health dates</h1>
 
+        <router-link to="login">Login</router-link>
+
     </div>
 </template>
 
@@ -23,6 +25,17 @@ div {
         margin-top: 6rem;
         width: 300px;
         height: 300px;
+    }
+
+    a {
+        text-decoration: none;
+        margin: 0;
+        width: 120px;
+        height: 35px;
+        line-height: 35px;
+        background-color: rgb(40, 154, 68);
+        color: white;
+        border-radius: 5px;
     }
 }
 </style>
