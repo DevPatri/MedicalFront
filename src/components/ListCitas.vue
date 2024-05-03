@@ -17,7 +17,7 @@ import CitasListService from '@/services/CitasService'
 import { onBeforeMount, ref } from 'vue'
 import { Cita } from '@/interfaces/Cita'
 
-export default {
+export default { //Composition API
     name: 'ListCitas',
 
     setup() {

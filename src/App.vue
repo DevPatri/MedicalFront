@@ -1,13 +1,19 @@
 <template>
   <NavBar />
   <main>
-    <SideBar />
+    <SideBar :style="{ visibility: token ? 'visible' : 'hidden'}" />
     <router-view />
   </main>
 </template>
 <script lang="ts" setup>
 import NavBar from '@/components/NavBar.vue';
 import SideBar from '@/components/SideBar.vue';
+import { useAuthStore } from '@/Auth/AuthStore';
+import { computed } from 'vue';
+
+
+const authStore = useAuthStore();
+const token = computed(() => authStore.token)
 
 </script>
 <style>

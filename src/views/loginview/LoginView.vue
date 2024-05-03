@@ -23,7 +23,6 @@ export default defineComponent({
             const auth = new AuthService();
             const response = await auth.login(name.value, password.value);
             if(response){
-                alert('Login successful');
                 router.push('citas');
             }else{
                 alert('Login failed');

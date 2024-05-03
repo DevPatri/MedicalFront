@@ -5,14 +5,15 @@ import { useAuthStore } from "@/Auth/AuthStore";
 
 class PacientesListService {
   private pacientes = ref<Paciente[]>([]);
-
+  private URL_PACIENTES = "http://localhost:8080/paciente";
+  
   getPacientes() {
     return this.pacientes.value;
   }
 
-  async fetchPacientes() {
+  async fetchPacientes(): Promise<Paciente[]> {
     try {
-      const url = "http://localhost:8080/paciente";
+      const url = this.URL_PACIENTES;
       const response = await axios.get<Paciente[]>(url, {
         headers: {
           "Authorization": `Bearer ${useAuthStore().token}`
@@ -26,9 +27,9 @@ class PacientesListService {
     }
   }
 
-  async getPaciente(nss: string) {
+  async getPaciente(nss: string): Promise<Paciente | null> {
     try {
-      const url = `http://localhost:8080/paciente/${nss}`;
+      const url = this.URL_PACIENTES + nss;
       const response = await axios.get(url, {
         headers: {
           "Authorization": `Bearer ${useAuthStore().token}`
@@ -41,8 +42,8 @@ class PacientesListService {
     }
   }
 
-  async createPaciente(paciente: Paciente) {
-    const url = "http://localhost:8080/paciente";
+  async createPaciente(paciente: Paciente): Promise<void> {
+    const url = this.URL_PACIENTES;
 
     await axios
       .post(url, paciente)
@@ -54,8 +55,8 @@ class PacientesListService {
       });
   }
 
-  async deletePacientes(nss: string) {
-    const url = `http://localhost:8080/paciente/${nss}`;
+  async deletePacientes(nss: string): Promise<void> {
+    const url = this.URL_PACIENTES + nss;
     await axios.delete(url).then(() => {
       this.pacientes.value = this.pacientes.value.filter(
         (paciente) => paciente.nss !== nss
@@ -69,8 +70,8 @@ class PacientesListService {
     apellidos: string,
     direccion: string,
     telefono: string
-  ) {
-    const url = `http://localhost:8080/paciente/${nss}`;
+  ): Promise<void> {
+    const url = this.URL_PACIENTES + nss;
     await axios
       .put(url, {
         nombre: nombre,

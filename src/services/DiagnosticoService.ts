@@ -5,15 +5,16 @@ import { useAuthStore } from "@/Auth/AuthStore";
 
 class DiagnosticoService {
     private diagnosticos = ref<Diagnostico[]>([]);
+    private URL_DIAGNOSTICO = "http://localhost:8080/diagnostico";
 
     getDiagnosticos() {
         return this.diagnosticos.value;
     }
 
-    async fetchDiagnosticos() {
+    async fetchDiagnosticos(): Promise<Diagnostico[]> 
+    {
         try {
-            const url = "http://localhost:8080/diagnostico";
-            const response = await axios.get<Diagnostico[]>(url,{
+            const response = await axios.get<Diagnostico[]>(this.URL_DIAGNOSTICO, {
                 headers: {
                   "Authorization": `Bearer ${useAuthStore().token}`
                 }
@@ -21,14 +22,13 @@ class DiagnosticoService {
             this.diagnosticos.value = response.data;
             return this.diagnosticos.value;
         } catch (error) {
-            console.log(error);
             return [];
         }
     }
 
-    async addDiagnostico(enfermedad: string, valoracionEspecialista: string) {
-        const url = "http://localhost:8080/diagnostico";
-        await axios.post(url, {
+    async addDiagnostico(enfermedad: string, valoracionEspecialista: string): Promise<void>
+    {
+        await axios.post(this.URL_DIAGNOSTICO, {
             enfermedad: enfermedad,
             valoracionEspecialista: valoracionEspecialista,
             headers: {
@@ -38,8 +38,9 @@ class DiagnosticoService {
     );
     }
 
-    async deleteDiagnosticos(id: number) {
-        const url = `http://localhost:8080/diagnostico/${id}`;
+    async deleteDiagnosticos(id: number): Promise<void> 
+    {
+        const url = this.URL_DIAGNOSTICO + id;
         await axios.delete(url).then(() => {
             this.diagnosticos.value = this.diagnosticos.value.filter(
                 (diagnostico) => diagnostico.id !== id
@@ -51,13 +52,17 @@ class DiagnosticoService {
         id: number,
         enfermedad: string,
         valoracionEspecialista: string
-    ) {
-        const url = `http://localhost:8080/diagnostico/${id}`;
+    ): Promise<void>
+    {
+        const url = this.URL_DIAGNOSTICO + id;
         await axios
             .put(url, {
                 enfermedad: enfermedad,
                 valoracionEspecialista: valoracionEspecialista,
                 diagnosticoId: id,
+                headers: {
+                    "Authorization": `Bearer ${useAuthStore().token }`
+                  }
             })
             .then(() => {
                 this.diagnosticos.value = this.diagnosticos.value.filter(

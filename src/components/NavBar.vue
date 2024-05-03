@@ -3,12 +3,12 @@
         <router-link to="/"><img src="../assets/img/logo2.webp" alt="logo"></router-link>
         <div class="links">
             <router-link to="/">Home</router-link>|
-            <router-link to="/citas">Citas</router-link>
-            <router-link to="/pacientes">Pacientes</router-link>
-            <router-link to="/medicos">Medicos</router-link>
+            <router-link to="citas">Citas</router-link>
+            <router-link to="pacientes">Pacientes</router-link>
+            <router-link to="medicos">Medicos</router-link>
         </div>
         <div>
-            <router-link to="login">Login</router-link>
+            <router-link v-show="!token" to="login">Login</router-link>
             <button v-show="token" @click="logout">Logout</button>
         </div>
     </nav>

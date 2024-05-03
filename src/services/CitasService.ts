@@ -37,13 +37,12 @@ class CitasListService {
       const url = "http://localhost:8080/cita";
       const response = await axios.get(url, {
         headers: {
-          "Authorization": `Bearer ${useAuthStore().token}`
-        }
+          Authorization: `Bearer ${useAuthStore().token}`,
+        },
       });
       this.citas.value = response.data;
       return this.citas.value;
     } catch (error) {
-      console.log(error);
       return [];
     }
   }
@@ -51,15 +50,14 @@ class CitasListService {
   async fetchCita(id: number): Promise<Cita> {
     try {
       const url = `http://localhost:8080/cita/${id}`;
-      const response = await axios.get(url, { 
+      const response = await axios.get(url, {
         headers: {
-          "Authorization": `Bearer ${useAuthStore().token}`
+          Authorization: `Bearer ${useAuthStore().token}`,
         },
-        });
+      });
       this.cita.value = await response.data;
       return this.cita.value;
     } catch (error) {
-      console.log(error);
       return {} as Cita;
     }
   }
@@ -72,7 +70,7 @@ class CitasListService {
         this.citas.value.push(cita);
       })
       .catch((error) => {
-        console.error('Error al insertar la cita.', error);
+        console.error("Error al insertar la cita.", error);
       });
   }
 
@@ -85,14 +83,20 @@ class CitasListService {
 
   async updateCita(cita: Cita): Promise<void> {
     const url = `http://localhost:8080/cita/${cita.id}`;
-    await axios.put(url, cita).then(() => {
-      this.citas.value = this.citas.value.map((c) => {
-        if (c.id === cita.id) {
-          return cita;
-        }
-        return c;
+    await axios
+      .put(url, cita, {
+        headers: {
+          Authorization: `Bearer ${useAuthStore().token}`,
+        },
+      })
+      .then(() => {
+        this.citas.value = this.citas.value.map((c) => {
+          if (c.id === cita.id) {
+            return cita;
+          }
+          return c;
+        });
       });
-    });
   }
 }
 export default CitasListService;
