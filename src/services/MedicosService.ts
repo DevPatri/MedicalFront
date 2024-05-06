@@ -6,14 +6,14 @@ import { useAuthStore } from "@/Auth/AuthStore";
 class MedicosService {
   private medicos = ref<Medico[]>([]);
   private URL_MEDICOS = "http://localhost:8080/medico";
+
   getMedicos() {
     return this.medicos.value;
   }
 
   async fetchMedicos(): Promise<Medico[]> {
     try {
-      const url = this.URL_MEDICOS;
-      const response = await axios.get<Medico[]>(url, {
+      const response = await axios.get<Medico[]>(this.URL_MEDICOS, {
         headers: {
           "Authorization": `Bearer ${useAuthStore().token}`
         }
@@ -27,8 +27,8 @@ class MedicosService {
 
   async fetchMedico(numColegiado: string): Promise<Medico | null> {
     try {
-      const url = this.URL_MEDICOS + numColegiado;
-      const response = await axios.get<Medico>(url, {
+      const response = await axios
+      .get<Medico>(this.URL_MEDICOS + '/' + numColegiado, {
         headers: {
           "Authorization": `Bearer ${useAuthStore().token}`
         }
@@ -48,8 +48,8 @@ class MedicosService {
   }
 
   async deleteMedicos(numColegiado: string) {
-    const url = this.URL_MEDICOS + numColegiado;
-    await axios.delete(url).then(() => {
+    await axios.delete(this.URL_MEDICOS + '/' + numColegiado)
+    .then(() => {
       this.medicos.value = this.medicos.value.filter(
         (medico) => medico.numColegiado !== numColegiado
       );
@@ -61,9 +61,8 @@ class MedicosService {
     nombre: string,
     apellidos: string
   ): Promise<void> {
-    const url = this.URL_MEDICOS + numColegiado;
     await axios
-      .put(url, {
+      .put(this.URL_MEDICOS + '/' + numColegiado, {
         nombre: nombre,
         apellidos: apellidos,
         medicoNumColegiado: numColegiado,

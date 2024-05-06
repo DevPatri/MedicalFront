@@ -5,27 +5,35 @@
             <input v-model="name" type="text" name="username" placeholder="Username">
             <input v-model="password" type="password" name="password" placeholder="Password">
             <button type="submit" value="Login" @click.prevent="authUser">Login</button>
+            <router-link to="register">Register</router-link>
         </form>
     </div>
 </template>
 
 <script lang="ts">
-import { Ref, defineComponent, ref } from 'vue';
-import AuthService from '@/Auth/AuthService';
-import router from '@/router';
+import { Ref, defineComponent, ref } from 'vue'
+import AuthService from '@/Auth/AuthService'
+import router from '@/router'
+
 export default defineComponent({
     name: 'LoginView',
     setup() {
-        let name: Ref<string> = ref('');
-        let password: Ref<string> = ref('');
+        let name: Ref<string> = ref('')
+        let password: Ref<string> = ref('')
 
         const authUser = async () => {
-            const auth = new AuthService();
-            const response = await auth.login(name.value, password.value);
-            if(response){
-                router.push('citas');
-            }else{
-                alert('Login failed');
+            const auth = new AuthService()
+            if(!name.value || !password.value) {
+                alert('Debe rellenar todos los campos')
+                return
+            }
+            const response = await auth.login(name.value, password.value)
+            if (response) {
+                
+                console.log(response)
+                router.push('citas')
+            } else {
+                alert('Login failed')
             }
         }
         return {
@@ -33,8 +41,7 @@ export default defineComponent({
             password,
             authUser
         };
-    },
-
+    }
 });
 </script>
 

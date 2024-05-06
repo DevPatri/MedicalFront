@@ -1,14 +1,13 @@
 <template>
     <nav>
         <router-link to="/"><img src="../assets/img/logo2.webp" alt="logo"></router-link>
-        <div class="links">
+        <div class="links" v-show="token">
             <router-link to="/">Home</router-link>|
             <router-link to="citas">Citas</router-link>
             <router-link to="pacientes">Pacientes</router-link>
             <router-link to="medicos">Medicos</router-link>
         </div>
         <div>
-            <router-link v-show="!token" to="login">Login</router-link>
             <button v-show="token" @click="logout">Logout</button>
         </div>
     </nav>
@@ -20,13 +19,13 @@ import router from '@/router';
 import { computed } from 'vue';
 
 const authStore = useAuthStore();
+const token = computed(() => authStore.token)
 
 const logout = () => {
     authStore.setToken('');
     router.push('login');
 }
 
-const token = computed(() => authStore.token)
 
 </script>
 <style scoped>

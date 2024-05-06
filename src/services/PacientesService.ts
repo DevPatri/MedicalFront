@@ -22,14 +22,13 @@ class PacientesListService {
       this.pacientes.value = response.data;
       return this.pacientes.value;
     } catch (error) {
-      console.log(error);
       return [];
     }
   }
 
   async getPaciente(nss: string): Promise<Paciente | null> {
     try {
-      const url = this.URL_PACIENTES + nss;
+      const url = this.URL_PACIENTES + '/' + nss;
       const response = await axios.get(url, {
         headers: {
           "Authorization": `Bearer ${useAuthStore().token}`
@@ -43,10 +42,9 @@ class PacientesListService {
   }
 
   async createPaciente(paciente: Paciente): Promise<void> {
-    const url = this.URL_PACIENTES;
-
+  
     await axios
-      .post(url, paciente)
+      .post(this.URL_PACIENTES, paciente)
       .then(() => {
         this.pacientes.value.push(paciente);
       })
@@ -56,8 +54,9 @@ class PacientesListService {
   }
 
   async deletePacientes(nss: string): Promise<void> {
-    const url = this.URL_PACIENTES + nss;
-    await axios.delete(url).then(() => {
+    
+    await axios.delete(this.URL_PACIENTES+ '/' + nss)
+    .then(() => {
       this.pacientes.value = this.pacientes.value.filter(
         (paciente) => paciente.nss !== nss
       );
@@ -71,9 +70,8 @@ class PacientesListService {
     direccion: string,
     telefono: string
   ): Promise<void> {
-    const url = this.URL_PACIENTES + nss;
     await axios
-      .put(url, {
+      .put(this.URL_PACIENTES+ '/' + nss, {
         nombre: nombre,
         apellidos: apellidos,
         nss: nss,
