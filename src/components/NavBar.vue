@@ -1,6 +1,7 @@
 <template>
     <nav>
-        <router-link to="/"><img src="../assets/img/logo2.webp" alt="logo"></router-link>
+        <router-link to="/"><img src="../assets/img/logo.webp" alt="logo"></router-link>
+        <h2 v-if="$route.path !== '/'">Health dates</h2>
         <div class="links" v-show="token">
             <router-link to="/">Home</router-link>|
             <router-link to="citas">Citas</router-link>
@@ -20,7 +21,6 @@ import { computed } from 'vue';
 
 const authStore = useAuthStore();
 const token = computed(() => authStore.token)
-
 const logout = () => {
     authStore.setToken('');
     router.push('login');
@@ -35,7 +35,7 @@ nav {
     align-items: center;
     margin: 0 auto;
     width: 100%;
-    background-color: #dbdbdb;
+    background-color: rgba(188, 207, 226, 0.4);
     padding: 0;
     border-radius: 5px;
 

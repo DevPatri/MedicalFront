@@ -1,7 +1,7 @@
 <template>
   <NavBar />
-  <main>
-    <SideBar :style="{ visibility: token ? 'visible' : 'hidden'}" />
+  <main :class="{ 'full-width': !token, 'no-side-bar': token }">
+    <SideBar v-if="token" />
     <router-view />
   </main>
 </template>
@@ -19,7 +19,16 @@ const token = computed(() => authStore.token)
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
 
+
+html, body{
+  margin: 0;
+  padding: 0;
+}
+
 #app {
+  position: relative;
+  margin: 0;
+  min-height: 100vh;
   font-family: 'Titillium Web', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -27,10 +36,30 @@ const token = computed(() => authStore.token)
   color: #2c3e50;
 }
 
+#app::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('@/assets/img/wallpaper.webp');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  filter: blur(2px);
+  z-index: -1;
+}
+
 @media (min-width:720px) {
-  main {
+  .no-side-bar {
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: 0.5fr 4fr;
+  }
+
+  .full-width {
+    grid-template-columns: 1fr;
   }
 }
 

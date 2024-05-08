@@ -57,7 +57,7 @@ export default {
         align-items: center;
         margin: 0 40px;
         padding: 15px;
-        background-color: #bce2d1;
+        background-color: rgba(188, 207, 226, 0.9);
         border-radius: 5px;
         border: 1px solid white;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -68,6 +68,7 @@ export default {
             padding: 0 1rem;
         }
         h3{
+            justify-self: flex-start;
             grid-column: span 2;
         }
         p:nth-child(2){

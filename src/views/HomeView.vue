@@ -1,10 +1,10 @@
 <template>
     <div>
-        <img src="@/assets/img/logo2.webp" alt="logo">
+        <img src="@/assets/img/logo.webp" alt="logo">
         <h1>Health dates</h1>
         <div class="logger">
             <router-link v-show="!token" to="login">Login</router-link>
-            <router-link v-show="!token" to="register">Register</router-link>
+            <router-link class="bt-secondary" v-show="!token" to="register">Register</router-link>
         </div>
     </div>
 
@@ -43,8 +43,8 @@ div {
     justify-content: center;
     width: 100%;
     margin-top: 2rem;
-    
-    a{
+
+    a {
         margin: 0 1rem;
         text-decoration: none;
         width: 120px;
@@ -54,6 +54,17 @@ div {
         color: white;
         border-radius: 5px;
     }
-    
+    .bt-secondary {
+        width: 120px;
+        height: 35px;
+        border-radius: 5px;
+        line-height: 33px;
+        background-color: white;
+        border: 1px solid rgb(40, 154, 68);
+        text-decoration: none;
+        color: rgb(40, 154, 68);
+        font-weight: 500;
+    }
 }
+
 </style>

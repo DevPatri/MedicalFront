@@ -1,16 +1,21 @@
-.login{
+.login {
     display: flex;
     flex-direction: column;
-    margin-top: 80px;
+    margin: 80px auto 0 auto;
+    padding: 20px;
+    background-color: rgba(188, 207, 226, 0.3);
+    width: fit-content;
+    border-radius: 10px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
 
-    form{
+    form {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         margin-top: 10px;
 
-        input{
+        input {
             width: 300px;
             height: 20px;
             margin-bottom: 20px;
@@ -19,7 +24,7 @@
             border: 1px solid #ccc;
         }
 
-        button[type="submit"]{
+        button[type="submit"] {
             text-decoration: none;
             margin: 0;
             width: 120px;
@@ -30,7 +35,8 @@
             border-radius: 5px;
             cursor: pointer;
         }
-        a{
+
+        a {
             margin-top: 10px;
             width: 120px;
             height: 35px;
@@ -44,7 +50,8 @@
         }
     }
 }
-.logged{
+
+.logged {
     font-weight: 500;
     color: green;
     position: absolute;

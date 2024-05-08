@@ -1,7 +1,12 @@
 .register{
     display: flex;
     flex-direction: column;
-    margin-top: 80px;
+    margin: 80px auto 0 auto;
+    padding: 20px;
+    background-color: rgba(188, 207, 226, 0.3);
+    width: fit-content;
+    border-radius: 10px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
 
     form{
         display: flex;

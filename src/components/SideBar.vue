@@ -15,7 +15,7 @@
 .sidebar {
     height: 8vh;
     margin-top: 10px;
-    background-color: #bce2d1;
+    /* background-color: #bce2d1; */
     color: white;
     padding: 10px;
     border-radius: 5px;
@@ -28,6 +28,7 @@
 
 
     h3 {
+        color: #2c3e50;
         position: sticky;
         top: 20px;
         font-size: 2rem;
@@ -39,9 +40,11 @@
         padding-left: 30px;
         display: flex;
         flex-direction: row;
-        h3{
+
+        h3 {
             margin-right: 20px;
         }
+
         a {
             cursor: pointer;
             font-size: clamp(0.8rem, 1.5vw, 1rem);
@@ -54,16 +57,18 @@
             background-color: white;
             opacity: 0.8;
             border: 1px solid white;
-            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
         }
     }
+
     @media (min-width: 720px) {
         div {
             flex-direction: column;
             padding-left: 0;
-        }    
+        }
     }
 }
+
 @media (min-width: 720px) {
     .sidebar {
         flex-direction: column;

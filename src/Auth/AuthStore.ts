@@ -1,5 +1,5 @@
 /* 
-    ? Define a store for the authentication token 
+    ? Store para el token de autenticación. 
 */
 
 import { defineStore } from 'pinia';

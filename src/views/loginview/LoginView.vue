@@ -5,7 +5,7 @@
             <input v-model="name" type="text" name="username" placeholder="Username">
             <input v-model="password" type="password" name="password" placeholder="Password">
             <button type="submit" value="Login" @click.prevent="authUser">Login</button>
-            <router-link to="register">Register</router-link>
+            <router-link to="register">Registro</router-link>
         </form>
     </div>
 </template>

@@ -1,13 +1,13 @@
 <template>
     <div class="register">
-        <h1>Register</h1>
+        <h1>Registro</h1>
         <form>
             <input v-model="nombre" type="text" name="nombre" placeholder="Nombre">
             <input v-model="apellidos" type="text" name="apellidos" placeholder="Apellidos">
             <input v-model="usuario" type="text" name="usuario" placeholder="Usuario">
             <input v-model="clave" type="password" name="clave" placeholder="Clave">
             <input v-model="numColegiado" type="text" name="numColegiado" placeholder="Número de colegiado">
-            <button type="submit" value="Register" @click.prevent="register">Register</button>
+            <button type="submit" value="Register" @click.prevent="register">Registrar</button>
             <router-link to="login">Login</router-link>
         </form>
     </div>
