@@ -59,7 +59,9 @@ html, body{
   }
 
   .full-width {
-    grid-template-columns: 1fr;
+    height: calc(90vh - 81px);
+    display: grid;
+    place-items: center;
   }
 }
 

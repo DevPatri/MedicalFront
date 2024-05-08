@@ -30,7 +30,6 @@ export default defineComponent({
             const response = await auth.login(name.value, password.value)
             if (response) {
                 
-                console.log(response)
                 router.push('citas')
             } else {
                 alert('Login failed')
