@@ -2,17 +2,18 @@ import { shallowMount, mount, config } from "@vue/test-utils";
 import App from "../../src/App.vue";
 import router from "../../src/router";
 import SideBar from "@/components/SideBar.vue";
-// import NavBar from "@/components/NavBar.vue";
+import { createPinia } from 'pinia';
 
 config.global.stubs['RouterLink'] = false;
 config.global.stubs['RouterView'] = false;
+const pinia = createPinia();
 
 describe("App.vue", () => {
   //* actions
   it("Inital Home", () => {
     const wrapper = shallowMount(App, {
       global: {
-        plugins: [router],
+        plugins: [router, pinia],
       },
     });
     const h1 = wrapper.find("h1");
@@ -25,7 +26,7 @@ describe("App.vue", () => {
   it("button create cita clicked", async () => {
     const wrapper = mount(SideBar, {
       global: {
-        plugins: [router],
+        plugins: [router, pinia],
       },
     });
 

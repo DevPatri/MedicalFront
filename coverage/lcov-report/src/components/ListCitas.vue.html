@@ -181,8 +181,7 @@
 <a name='L116'></a><a href='#L116'>116</a>
 <a name='L117'></a><a href='#L117'>117</a>
 <a name='L118'></a><a href='#L118'>118</a>
-<a name='L119'></a><a href='#L119'>119</a>
-<a name='L120'></a><a href='#L120'>120</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L119'></a><a href='#L119'>119</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -300,7 +299,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;ul class="list" v-if="citas"&gt;
         &lt;li v-for="cita in citas" v-bind:key="cita.id"&gt;
@@ -320,7 +318,7 @@ import C<span class="cstat-no" title="statement not covered" >itasListService fr
 import { onBeforeMount, ref } from 'vue'
 import {<span class="cstat-no" title="statement not covered" > Cita } fro</span>m '@/interfaces/Cita'
 &nbsp;
-export default {
+export default { //Composition API
     name: 'Li<span class="fstat-no" title="function not covered" >stCitas',</span>
 <span class="cstat-no" title="statement not covered" ></span>
     setu<span class="cstat-no" title="statement not covered" >p() {</span>
@@ -350,84 +348,83 @@ export default {
                 await service.deleteCitas(id);
                 const fetchedCitas = await service.fetchCitas()
                 citas.value = fetchedCitas
-&nbsp;
             } catch (error) {
-<span class="cstat-no" title="statement not covered" >                console.error("fallo al borrar la cita", error)</span>
-            }
+                console.error("fallo al borrar la cita", error)
+<span class="cstat-no" title="statement not covered" >            }</span>
         }
 &nbsp;
-        return {<span class="fstat-no" title="function not covered" ></span>
-<span class="cstat-no" title="statement not covered" >            citas</span>,
-            formatDate,
-<span class="fstat-no" title="function not covered" >            elim</span>inarCita
-<span class="cstat-no" title="statement not covered" >        };<span class="fstat-no" title="function not covered" ></span></span>
-    }<span class="cstat-no" title="statement not covered" ></span>
-};
+        return {
+            citas,<span class="fstat-no" title="function not covered" ></span>
+<span class="cstat-no" title="statement not covered" >            forma</span>tDate,
+            eliminarCita
+        };<span class="fstat-no" title="function not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    }<span class="fstat-no" title="function not covered" ></span></span>
+};<span class="cstat-no" title="statement not covered" ></span>
 &nbsp;
-&lt;/script&gt;<span class="fstat-no" title="function not covered" ></span>
-<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ></span></span>
-&lt;sty<span class="cstat-no" title="statement not covered" >le scoped&gt;<span class="cstat-no" title="statement not covered" ></span></span>
-.list <span class="cstat-no" title="statement not covered" >{<span class="cstat-no" title="statement not covered" ></span></span>
+&lt;/script&gt;
+<span class="fstat-no" title="function not covered" ></span>
+&lt;sty<span class="cstat-no" title="statement not covered" >le scop<span class="cstat-no" title="statement not covered" >ed&gt;</span></span>
+.lis<span class="cstat-no" title="statement not covered" >t {<span class="cstat-no" title="statement not covered" ></span></span>
     di<span class="cstat-no" title="statement not covered" >splay: grid;<span class="cstat-no" title="statement not covered" ></span></span>
-    ga<span class="cstat-no" title="statement not covered" >p: 1rem;</span>
-    list-style: none;
+    ga<span class="cstat-no" title="statement not covered" >p: 1rem;<span class="cstat-no" title="statement not covered" ></span></span>
+    li<span class="cstat-no" title="statement not covered" >st-style: none;</span>
     padding: 0;
-    margin<span class="cstat-no" title="statement not covered" >: 0 auto</span>;
+    margin: 0 auto;
     width:<span class="cstat-no" title="statement not covered" > 70vw;</span>
-&nbsp;
-    li {<span class="cstat-no" title="statement not covered" ></span>
-        di<span class="cstat-no" title="statement not covered" >splay: grid;</span>
-        grid-template-columns: repeat(4, 1fr);
+<span class="cstat-no" title="statement not covered" ></span>
+    li {
+        di<span class="cstat-no" title="statement not covered" >splay: grid</span>;
+        gr<span class="cstat-no" title="statement not covered" >id-template-columns: repeat(4, 1fr);</span>
         justify-content: start;
         align-items: center;
         padding: 15px;
-        ba<span class="cstat-no" title="statement not covered" >ckground-co</span>lor: #bce2d1;
+        background-color: rgba(188, 207, 226, 0.9);
         bo<span class="cstat-no" title="statement not covered" >rder-radius</span>: 5px;
-        bo<span class="cstat-no" title="statement not covered" >rder: 1px </span>solid white;
+        bo<span class="cstat-no" title="statement not covered" >rder: 1px s</span>olid white;
         bo<span class="cstat-no" title="statement not covered" >x-shadow: </span>0 0 10px rgba(0, 0, 0, 0.2);
-&nbsp;
-        di<span class="cstat-no" title="statement not covered" >v{</span>
-<span class="cstat-no" title="statement not covered" >            justify-self</span>: flex-end;
-<span class="cstat-no" title="statement not covered" >            padding:</span> 0 1rem;
-        }
 <span class="cstat-no" title="statement not covered" ></span>
-        h3,<span class="cstat-no" title="statement not covered" ></span>
+        div{
+<span class="cstat-no" title="statement not covered" >            justify-self: fl</span>ex-end;
+<span class="cstat-no" title="statement not covered" >            padding: 0 1</span>rem;
+        }<span class="cstat-no" title="statement not covered" ></span>
+&nbsp;
+        h3<span class="cstat-no" title="statement not covered" >,</span>
         p {<span class="cstat-no" title="statement not covered" ></span>
-            margin: 0;
-<span class="cstat-no" title="statement not covered" >            padding: 0 1rem;</span>
+<span class="cstat-no" title="statement not covered" >            margin: 0;</span>
+            padding: 0 1rem;
         }<span class="cstat-no" title="statement not covered" ></span>
     }<span class="cstat-no" title="statement not covered" ></span>
-&nbsp;
-    .bt-el<span class="cstat-no" title="statement not covered" >im {</span>
-        colo<span class="cstat-no" title="statement not covered" >r: red;</span>
-        font<span class="cstat-no" title="statement not covered" >-weight:</span> bold;
-        text<span class="cstat-no" title="statement not covered" >-decora</span>tion: none;
-    }
 <span class="cstat-no" title="statement not covered" ></span>
-    .bt-diag<span class="cstat-no" title="statement not covered" > {</span>
-        padd<span class="cstat-no" title="statement not covered" >ing-right: 1rem;</span>
-        colo<span class="cstat-no" title="statement not covered" >r: rgb(</span>58, 58, 175);
-        font-weight: bold;
-        te<span class="cstat-no" title="statement not covered" >xt-decorat<span class="cstat-no" title="statement not covered" >ion: none;</span></span>
+    .bt-elim {
+        co<span class="cstat-no" title="statement not covered" >lor: red;</span>
+        font<span class="cstat-no" title="statement not covered" >-weight: bold;</span>
+        text<span class="cstat-no" title="statement not covered" >-decorat</span>ion: none;
     }<span class="cstat-no" title="statement not covered" ></span>
+&nbsp;
+    .bt-di<span class="cstat-no" title="statement not covered" >ag {</span>
+        padd<span class="cstat-no" title="statement not covered" >ing-right: 1rem;</span>
+        colo<span class="cstat-no" title="statement not covered" >r: rgb(58, 58, 1</span>75);
+        font<span class="cstat-no" title="statement not covered" >-weight</span>: bold;
+        text-decoration: none;
+    }<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ></span></span>
 <span class="cstat-no" title="statement not covered" ></span>
-    .bt-diag:hover {
-<span class="cstat-no" title="statement not covered" >        text-shadow: 0 0 10px rgba</span>(0, 0, 0, 0.5);
-    }
-<span class="cstat-no" title="statement not covered" ></span>
-    .b<span class="cstat-no" title="statement not covered" >t-diag:</span>active {
-        color: rgb(32, 32, 97);
-<span class="cstat-no" title="statement not covered" >        text-shad</span>ow: 0 0 10px rgba(0, 0, 0, 0.5);
-    }
-}<span class="cstat-no" title="statement not covered" ><span class="cstat-no" title="statement not covered" ></span></span>
-&lt;/st<span class="cstat-no" title="statement not covered" >yle&gt;</span></pre></td></tr></table></pre>
+    .bt-di<span class="cstat-no" title="statement not covered" >ag:hover {</span>
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }<span class="cstat-no" title="statement not covered" ></span>
+&nbsp;
+    .b<span class="cstat-no" title="statement not covered" >t-diag:active</span> {
+<span class="cstat-no" title="statement not covered" >        color</span>: rgb(32, 32, 97);
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }<span class="cstat-no" title="statement not covered" ></span>
+}
+&lt;/st<span class="cstat-no" title="statement not covered" >yle&gt;<span class="cstat-no" title="statement not covered" ></span></span></pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-04-29T09:03:44.011Z
+                at 2024-05-08T07:27:38.789Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

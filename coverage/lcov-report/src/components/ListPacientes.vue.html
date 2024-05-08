@@ -166,7 +166,8 @@
 <a name='L101'></a><a href='#L101'>101</a>
 <a name='L102'></a><a href='#L102'>102</a>
 <a name='L103'></a><a href='#L103'>103</a>
-<a name='L104'></a><a href='#L104'>104</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -268,6 +269,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&lt;template&gt;
     &lt;ul class="list" v-if="pacientes"&gt;
@@ -328,7 +330,7 @@ export d<span class="cstat-no" title="statement not covered" >efault {</span>
 <span class="cstat-no" title="statement not covered" >        align-ite</span>ms: center;
         margin: 0 40px;
         pad<span class="fstat-no" title="function not covered" >ding:</span> 15px;
-<span class="cstat-no" title="statement not covered" >        bac<span class="fstat-no" title="function not covered" >kg</span>round-color: #bce2d1;</span>
+<span class="cstat-no" title="statement not covered" >        bac<span class="fstat-no" title="function not covered" >kg</span>round-color: rgba(188, 207, 226, 0.9);</span>
 <span class="cstat-no" title="statement not covered" >        border-radius: 5px;</span>
         border: 1px solid white;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -339,38 +341,39 @@ export d<span class="cstat-no" title="statement not covered" >efault {</span>
 <span class="cstat-no" title="statement not covered" >            padding:<span class="cstat-no" title="statement not covered" > 0 1rem;</span></span>
 <span class="cstat-no" title="statement not covered" >        }</span>
         h3{
-            grid-column: span 2;
-        }<span class="cstat-no" title="statement not covered" ></span>
-        p:<span class="cstat-no" title="statement not covered" >nth-chi</span>ld(2){
             justify-self: flex-start;
+<span class="cstat-no" title="statement not covered" >            grid-c</span>olumn: span 2;
         }<span class="cstat-no" title="statement not covered" ></span>
-        p:<span class="cstat-no" title="statement not covered" >nth-child(3){</span>
+        p:nth-child(2){
+<span class="cstat-no" title="statement not covered" >            justify-s</span>elf: flex-start;
+        }<span class="cstat-no" title="statement not covered" ></span>
+        p:nth-child(3){
             grid-column: span 2;
         }
         p:nth-child(4){
-            justify-self: flex-start;
+<span class="cstat-no" title="statement not covered" >            justify-s</span>elf: flex-start;
         }<span class="cstat-no" title="statement not covered" ></span>
         <span class="cstat-no" title="statement not covered" ></span>
     }<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" ></span>
-    .btns {
-        ju<span class="cstat-no" title="statement not covered" >stify-self: flex-e</span>nd;
+&nbsp;
+    .btns <span class="cstat-no" title="statement not covered" >{</span>
+        ju<span class="cstat-no" title="statement not covered" >stify-self: fl</span>ex-end;
+    }<span class="cstat-no" title="statement not covered" ></span>
+&nbsp;
+    .bt-el<span class="cstat-no" title="statement not covered" >im {</span>
+        curs<span class="cstat-no" title="statement not covered" >or: poi</span>nter;
+        colo<span class="cstat-no" title="statement not covered" >r: red;</span>
+        font-weight: bold;
+        te<span class="cstat-no" title="statement not covered" >xt-decoration: none;</span>
     }<span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" ></span>
-    .bt-elim {
+    .bt-diag {
         cu<span class="cstat-no" title="statement not covered" >rsor: pointer;</span>
-        colo<span class="cstat-no" title="statement not covered" >r: red;</span>
-        font<span class="cstat-no" title="statement not covered" >-weight: b</span>old;
+        marg<span class="cstat-no" title="statement not covered" >in-right: 10px;</span>
+        colo<span class="cstat-no" title="statement not covered" >r: rgb(6</span>2, 62, 199);
+        font<span class="cstat-no" title="statement not covered" >-weight</span>: bold;
         text-decoration: none;
     }<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" ></span>
-    .bt-diag<span class="cstat-no" title="statement not covered" > {</span>
-        cursor: pointer;
-        ma<span class="cstat-no" title="statement not covered" >rgin-right: 10px;</span>
-        colo<span class="cstat-no" title="statement not covered" >r: rgb(62, 62, 1</span>99);
-        font<span class="cstat-no" title="statement not covered" >-weight:</span> bold;
-        text<span class="cstat-no" title="statement not covered" >-decora</span>tion: none;
-    }
 }<span class="cstat-no" title="statement not covered" ></span>
 &lt;/style&gt;<span class="cstat-no" title="statement not covered" ></span></pre></td></tr></table></pre>
 
@@ -379,7 +382,7 @@ export d<span class="cstat-no" title="statement not covered" >efault {</span>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-04-29T09:03:44.011Z
+                at 2024-05-08T07:27:38.789Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
